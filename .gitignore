@@ -1,0 +1,6 @@
+.env
+.env.dev
+.ds_store
+node_modules/
+.venv
+package-lock.json
