@@ -9,11 +9,17 @@ if (!process.env.DATABASE_URL) {
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }, // important on Heroku
+  ssl: { rejectUnauthorized: false },
 });
 
 const adapter = new PrismaPg(pool);
 
+// singleton
 const prisma = new PrismaClient({ adapter });
 
-module.exports = { prisma };
+// compatibility for callers expecting getPrisma()
+function getPrisma() {
+  return prisma;
+}
+
+module.exports = { prisma, getPrisma };
