@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  engineType = "binary"
 }
 
 datasource db {
@@ -17,8 +16,9 @@ model Installation {
   installerUser String?
   scope         String?
   appId         String?
-  tokenType     String?
+  tokenType     String?  @default("bot")
   installedAt   DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@index([enterpriseId])
   @@index([teamId])
