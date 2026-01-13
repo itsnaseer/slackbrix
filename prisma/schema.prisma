@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Installation {
+  id            String   @id
+  enterpriseId  String?
+  teamId        String?
+  botToken      String
+  botId         String?
+  botUserId     String?
+  installerUser String?
+  scope         String?
+  appId         String?
+  tokenType     String?
+  installedAt   DateTime @default(now())
+
+  @@index([enterpriseId])
+  @@index([teamId])
+}
